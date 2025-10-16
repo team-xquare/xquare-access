@@ -1,6 +1,6 @@
 FROM ghcr.io/erebe/wstunnel:latest
 
-ENV XQUARE_SERVER_URL="" \
+ENV PROJECT_NAME="" \
     PASSWORD="" \
     SERVICE_NAME="localhost" \
     SERVICE_PORT=5432
@@ -11,6 +11,6 @@ CMD ["wstunnel client \
   --http-upgrade-path-prefix \"${PASSWORD}\" \
   --connection-min-idle 5 \
   --log-lvl OFF \
-  ${XQUARE_SERVER_URL}"]
+  ws://xquare-remote-access-${PROJECT_NAME}.dsmhs.kr"]
 
 EXPOSE 5432
