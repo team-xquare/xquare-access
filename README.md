@@ -1,6 +1,6 @@
 # xquare-access
 
-WebSocket 터널 기반 클라우드 리소스 접근 솔루션
+WebSocket 터널 기반 내부 리소스 접근 솔루션
 
 ## 사용법
 
