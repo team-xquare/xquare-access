@@ -5,6 +5,10 @@ ENV PROJECT_NAME="" \
     SERVICE_NAME="localhost" \
     SERVICE_PORT=5432
 
-CMD ["/bin/sh", "-c", "wstunnel client -L tcp://0.0.0.0:${SERVICE_PORT}:${SERVICE_NAME}:${SERVICE_PORT} --http-upgrade-path-prefix \"${PASSWORD}\" --connection-min-idle 5 --log-lvl OFF ws://xquare-remote-access-${PROJECT_NAME}.dsmhs.kr"]
+USER app
+WORKDIR /home/app
+
+ENTRYPOINT ["/usr/bin/dumb-init", "-v", "--"]
+CMD ["/bin/sh", "-c", "exec /home/app/wstunnel client -L tcp://0.0.0.0:${SERVICE_PORT}:${SERVICE_NAME}:${SERVICE_PORT} --http-upgrade-path-prefix \"${PASSWORD}\" --connection-min-idle 5 --log-lvl OFF ws://xquare-remote-access-${PROJECT_NAME}.dsmhs.kr"]
 
 EXPOSE 5432
